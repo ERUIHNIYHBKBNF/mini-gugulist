@@ -12,7 +12,7 @@ fn find_default_journal_file() -> Option<PathBuf> {
     })
 }
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     let args = CommandLineArgs::from_args();
     
     let journal_file = args.journal_file
@@ -25,4 +25,6 @@ fn main() {
         List => list_tasks(journal_file),
     }
     .expect("Failed to complete action");
+
+    Ok(())
 }
